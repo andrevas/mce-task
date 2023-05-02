@@ -4,7 +4,6 @@ import DevicesListInterface, {
 } from "../viewInterfaces/DevicesList";
 
 import * as React from "react";
-import axios from "axios";
 
 export enum DeviceListMode {
   HIERARCHICAL,
@@ -13,7 +12,7 @@ export enum DeviceListMode {
 
 class DevicesList extends ReflowReactComponent<DevicesListInterface> {
   render() {
-    const { title, devices, event } = this.props;
+    const { title, devices } = this.props;
 
     const parseDeviceData = (deviceData: DevicesHierarchyData): string => {
       const { name, data } = deviceData;
@@ -59,19 +58,6 @@ class DevicesList extends ReflowReactComponent<DevicesListInterface> {
             </ul>
           }
         </div>
-
-        <button
-          onClick={async () => {
-            try {
-              const res = await axios.get("http://localhost:3000/devices");
-              event("devicesUpdateEvent", { data: { devices: res.data } });
-            } catch (err) {
-              console.log(err);
-            }
-          }}
-        >
-          Fetch Devices
-        </button>
       </>
     );
   }

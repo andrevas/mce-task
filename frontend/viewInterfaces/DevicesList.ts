@@ -1,13 +1,5 @@
 import { ViewInterface } from "@mcesystems/reflow";
 
-export interface DeviceListEvents {
-  devicesUpdateEvent: {
-    data: {
-      devices: DevicesHierarchyData[];
-    };
-  };
-}
-
 export interface Device {
   vendorId: number;
   productId: number;
@@ -29,5 +21,4 @@ export interface Input {
   devices: DevicesHierarchyData[];
 }
 
-export default interface DevicesList
-  extends ViewInterface<Input, DeviceListEvents> {}
+export default interface DevicesList extends ViewInterface<Input> {}

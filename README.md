@@ -1,6 +1,10 @@
 # mce-task
 
-* To `npm install` both projects at once - run `npm install` then `npm run pre_build`
+###Running both client and server
+
+* run `npm install` from root directory
+
+* To `npm install` both projects at once - run `npm run pre_build`
 
 * To build both projects run `npm run build`
 

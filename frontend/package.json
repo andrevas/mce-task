@@ -14,8 +14,6 @@
     "@mcesystems/reflow-react-display-layer": "^5.0.4",
     "@types/react": "^18.2.0",
     "axios": "^1.4.0",
-    "react-d3-tree": "^3.5.2",
-    "react-xarrows": "^2.0.2",
     "ts-loader": "^9.4.2",
     "webpack": "^5.81.0",
     "webpack-cli": "^5.0.2",

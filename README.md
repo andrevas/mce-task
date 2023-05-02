@@ -1,6 +1,6 @@
 # mce-task
 
-###Running both client and server
+### Running both client and server
 
 * run `npm install` from root directory
 

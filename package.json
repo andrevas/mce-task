@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pre_build": "concurrently \"cd backend && npm install\" \"cd frontend && npm install\"",
-    "build": "concurrently \"cd backend && npm run build\" \"cd frontend && npm run build\"",
+    "build": "npm install && concurrently \"cd backend && npm install && npm run build\" \"cd frontend && npm install && npm run build\" \"cd ..\"",
     "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\""
   },
   "author": "",

@@ -2,7 +2,7 @@ import { ViewInterface } from "@mcesystems/reflow";
 import {
   UsbDevicesByTypeData,
   UsbDevicesHierarchyData,
-  UsbDevicesHierarchyType,
+  UsbDevicesViewType,
 } from "../utils/devices-parser/types";
 
 export interface Events {
@@ -12,7 +12,7 @@ export interface Events {
 export interface Input {
   title: string;
   devices: UsbDevicesHierarchyData[] | UsbDevicesByTypeData[];
-  hierarchyType: UsbDevicesHierarchyType;
+  viewType: UsbDevicesViewType;
 }
 
 export default interface UsbDevicesList extends ViewInterface<Input, Events> {}

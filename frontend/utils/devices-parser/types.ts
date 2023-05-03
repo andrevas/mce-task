@@ -1,4 +1,4 @@
-export enum UsbDevicesHierarchyType {
+export enum UsbDevicesViewType {
   HIERARCHY,
   TYPE,
 }

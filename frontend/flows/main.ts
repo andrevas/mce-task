@@ -1,12 +1,6 @@
 import { Flow } from "@mcesystems/reflow";
-import {
-  orderDevicesByHierarchy,
-  orderDevicesByType,
-} from "../utils/devices-parser/devices-parser";
-import {
-  UsbDevice,
-  UsbDevicesHierarchyType,
-} from "../utils/devices-parser/types";
+import { parseDevices } from "../utils/devices-parser/devices-parser";
+import { UsbDevice, UsbDevicesViewType } from "../utils/devices-parser/types";
 import {
   ServerListenerFactory,
   ServerType,
@@ -14,17 +8,17 @@ import {
 import { ViewInterfacesType } from "../viewInterfaces";
 
 export default <Flow<ViewInterfacesType>>(async ({ view, views }) => {
-  let hierarchyType = UsbDevicesHierarchyType.HIERARCHY;
+  let viewType = UsbDevicesViewType.HIERARCHY;
 
   const devicesListView = view(0, views.DevicesList, {
     title: "Server Devices List",
     devices: [],
-    hierarchyType,
+    viewType,
   }).on("switchView", () => {
-    hierarchyType =
-      hierarchyType === UsbDevicesHierarchyType.HIERARCHY
-        ? UsbDevicesHierarchyType.TYPE
-        : UsbDevicesHierarchyType.HIERARCHY;
+    viewType =
+      viewType === UsbDevicesViewType.HIERARCHY
+        ? UsbDevicesViewType.TYPE
+        : UsbDevicesViewType.HIERARCHY;
   });
 
   const serverListener = ServerListenerFactory.createServerListener(
@@ -33,11 +27,10 @@ export default <Flow<ViewInterfacesType>>(async ({ view, views }) => {
   );
 
   serverListener.listen((devices: UsbDevice[]) => {
-    const parsedDevices =
-      hierarchyType === UsbDevicesHierarchyType.HIERARCHY
-        ? orderDevicesByHierarchy(devices)
-        : orderDevicesByType(devices);
-    devicesListView.update({ devices: parsedDevices, hierarchyType });
+    devicesListView.update({
+      devices: parseDevices(devices, viewType),
+      viewType,
+    });
   });
 
   await new Promise(() => {});

@@ -6,7 +6,7 @@ import {
   UsbDevice,
   UsbDevicesByTypeData,
   UsbDevicesHierarchyData,
-  UsbDevicesHierarchyType,
+  UsbDevicesViewType,
 } from "../utils/devices-parser/types";
 
 export enum UsbDevicesListMode {
@@ -16,7 +16,7 @@ export enum UsbDevicesListMode {
 
 class UsbDevicesList extends ReflowReactComponent<DevicesListInterface> {
   render() {
-    const { title, devices, hierarchyType, event } = this.props;
+    const { title, devices, viewType, event } = this.props;
 
     const stringifyHierarchyDeviceData = (
       deviceData: UsbDevicesHierarchyData
@@ -36,7 +36,7 @@ class UsbDevicesList extends ReflowReactComponent<DevicesListInterface> {
           <h1>{title}</h1>
         </div>
         <div>
-          {hierarchyType === UsbDevicesHierarchyType.HIERARCHY ? (
+          {viewType === UsbDevicesViewType.HIERARCHY ? (
             <ul style={{ listStyleType: "none" }}>
               <li>
                 <details open>

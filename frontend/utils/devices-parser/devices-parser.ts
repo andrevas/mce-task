@@ -2,6 +2,7 @@ import {
   UsbDevice,
   UsbDevicesByTypeData,
   UsbDevicesHierarchyData,
+  UsbDevicesViewType,
 } from "./types";
 
 const typeToStringType = (typeNumber: number) => {
@@ -36,7 +37,7 @@ const parseDeviceData = (device: UsbDevice) => {
   };
 };
 
-export const orderDevicesByHierarchy = (
+const orderDevicesByHierarchy = (
   devices: UsbDevice[]
 ): UsbDevicesHierarchyData[] => {
   let childrenMap: { [key: number]: UsbDevicesHierarchyData[] } = {};
@@ -60,9 +61,7 @@ export const orderDevicesByHierarchy = (
   return parentsList;
 };
 
-export const orderDevicesByType = (
-  devices: UsbDevice[]
-): UsbDevicesByTypeData[] => {
+const orderDevicesByType = (devices: UsbDevice[]): UsbDevicesByTypeData[] => {
   let devicesMap: { [key: string]: UsbDevice[] } = {};
 
   for (const device of devices) {
@@ -77,4 +76,13 @@ export const orderDevicesByType = (
     type,
     children: devicesMap[type],
   }));
+};
+
+export const parseDevices = (
+  devices: UsbDevice[],
+  viewType: UsbDevicesViewType
+) => {
+  return viewType === UsbDevicesViewType.HIERARCHY
+    ? orderDevicesByHierarchy(devices)
+    : orderDevicesByType(devices);
 };

@@ -13,3 +13,5 @@
 My client uses long polling for fetching the devices data with 1 second delay between requests.
 
 As I was surprised to find out some hubs are not recognized as devices, some recognized as separate hubs, anyway I hope in your tests it will go well :)
+
+Developed on MacOS and tested on Mac and Windows.

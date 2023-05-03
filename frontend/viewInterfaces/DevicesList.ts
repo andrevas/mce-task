@@ -1,24 +1,18 @@
 import { ViewInterface } from "@mcesystems/reflow";
+import {
+  DevicesByTypeData,
+  DevicesHierarchyData,
+  DevicesHierarchyType,
+} from "../utils/hierarchy-processor/types";
 
-export interface Device {
-  vendorId: number;
-  productId: number;
-  address: number;
-  isHub: boolean;
-  deviceDescription: string;
-  parentAddress?: number;
+export interface Events {
+  switchView: {};
 }
-
-export type DevicesHierarchyData = {
-  id: number;
-  name: string;
-  data: Device;
-  children: DevicesHierarchyData[];
-};
 
 export interface Input {
   title: string;
-  devices: DevicesHierarchyData[];
+  devices: DevicesHierarchyData[] | DevicesByTypeData[];
+  hierarchyType: DevicesHierarchyType;
 }
 
-export default interface DevicesList extends ViewInterface<Input> {}
+export default interface DevicesList extends ViewInterface<Input, Events> {}

@@ -3,7 +3,6 @@ import express, { Express, Request, Response } from "express";
 import { getAllConnectedDevices } from "../utils/usb-listener/usb-listener";
 import { Server } from "http";
 import cors from "cors";
-import { orderDevicesByHierarchy } from "../utils/hierarchy-processor/hierarchy-processor";
 
 export class HttpExpressServer implements IServer {
   app: Express;
@@ -23,8 +22,7 @@ export class HttpExpressServer implements IServer {
   start = (): void => {
     this.app.get("/devices", (req: Request, res: Response) => {
       const allDevices = getAllConnectedDevices();
-      const devicesByHierarchy = orderDevicesByHierarchy(allDevices);
-      res.json(devicesByHierarchy);
+      res.json(allDevices);
     });
 
     this.server = this.app.listen(this.port, async () => {

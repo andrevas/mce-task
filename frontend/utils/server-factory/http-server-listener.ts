@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DevicesHierarchyData } from "../viewInterfaces/DevicesList";
+import { Device } from "../hierarchy-processor/types";
 import { IServerListener } from "./interfaces";
 
 export class HttpServerListener implements IServerListener {
@@ -9,9 +9,7 @@ export class HttpServerListener implements IServerListener {
     this.port = port;
   }
 
-  async listen(
-    onData: (devices: DevicesHierarchyData[]) => void
-  ): Promise<void> {
+  async listen(onData: (devices: Device[]) => void): Promise<void> {
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
     while (true) {

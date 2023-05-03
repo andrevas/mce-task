@@ -1,9 +1,9 @@
-export enum DevicesHierarchyType {
+export enum UsbDevicesHierarchyType {
   HIERARCHY,
   TYPE,
 }
 
-export interface Device {
+export interface UsbDevice {
   vendorId: number;
   productId: number;
   address: number;
@@ -13,14 +13,14 @@ export interface Device {
   deviceType: number;
 }
 
-export type DevicesHierarchyData = {
+export type UsbDevicesHierarchyData = {
   id: number;
   name: string;
-  data: Device;
-  children: DevicesHierarchyData[];
+  data: UsbDevice;
+  children: UsbDevicesHierarchyData[];
 };
 
-export type DevicesByTypeData = {
+export type UsbDevicesByTypeData = {
   type: string;
-  children: Device[];
+  children: UsbDevice[];
 };

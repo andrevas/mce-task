@@ -1,31 +1,31 @@
 import { ReflowReactComponent } from "@mcesystems/reflow-react-display-layer";
-import DevicesListInterface from "../viewInterfaces/DevicesList";
+import DevicesListInterface from "../viewInterfaces/UsbDevicesList";
 
 import * as React from "react";
 import {
-  Device,
-  DevicesByTypeData,
-  DevicesHierarchyData,
-  DevicesHierarchyType,
-} from "../utils/hierarchy-processor/types";
+  UsbDevice,
+  UsbDevicesByTypeData,
+  UsbDevicesHierarchyData,
+  UsbDevicesHierarchyType,
+} from "../utils/devices-parser/types";
 
-export enum DeviceListMode {
+export enum UsbDevicesListMode {
   HIERARCHICAL,
   BY_TYPE,
 }
 
-class DevicesList extends ReflowReactComponent<DevicesListInterface> {
+class UsbDevicesList extends ReflowReactComponent<DevicesListInterface> {
   render() {
     const { title, devices, hierarchyType, event } = this.props;
 
-    const parseHierarchyDeviceData = (
-      deviceData: DevicesHierarchyData
+    const stringifyHierarchyDeviceData = (
+      deviceData: UsbDevicesHierarchyData
     ): string => {
       const { data } = deviceData;
-      return parseDeviceData(data);
+      return stringifyDeviceData(data);
     };
 
-    const parseDeviceData = (deviceData: Device): string => {
+    const stringifyDeviceData = (deviceData: UsbDevice): string => {
       const { deviceDescription, vendorId, productId } = deviceData;
       return `${deviceDescription} | VendorID: ${vendorId} | ProductID: ${productId}`;
     };
@@ -36,24 +36,24 @@ class DevicesList extends ReflowReactComponent<DevicesListInterface> {
           <h1>{title}</h1>
         </div>
         <div>
-          {hierarchyType === DevicesHierarchyType.HIERARCHY ? (
+          {hierarchyType === UsbDevicesHierarchyType.HIERARCHY ? (
             <ul style={{ listStyleType: "none" }}>
               <li>
                 <details open>
                   <summary>Server</summary>
-                  {(devices as DevicesHierarchyData[]).map((device) => (
+                  {(devices as UsbDevicesHierarchyData[]).map((device) => (
                     <>
                       {device.children.length > 0 ? (
                         <ul>
                           <li>
                             <details open>
                               <summary>
-                                {parseHierarchyDeviceData(device)}
+                                {stringifyHierarchyDeviceData(device)}
                               </summary>
                               <ul>
                                 {device.children.map((childDevice) => (
                                   <li>
-                                    {parseHierarchyDeviceData(childDevice)}
+                                    {stringifyHierarchyDeviceData(childDevice)}
                                   </li>
                                 ))}
                               </ul>
@@ -62,7 +62,7 @@ class DevicesList extends ReflowReactComponent<DevicesListInterface> {
                         </ul>
                       ) : (
                         <ul>
-                          <li> {parseHierarchyDeviceData(device)}</li>
+                          <li> {stringifyHierarchyDeviceData(device)}</li>
                         </ul>
                       )}
                     </>
@@ -75,14 +75,14 @@ class DevicesList extends ReflowReactComponent<DevicesListInterface> {
               <li>
                 <details open>
                   <summary>Server</summary>
-                  {(devices as DevicesByTypeData[]).map((device) => (
+                  {(devices as UsbDevicesByTypeData[]).map((device) => (
                     <ul>
                       <li>
                         <details open>
                           <summary>{`${device.type} devices`}</summary>
                           <ul>
                             {device.children.map((childDevice) => (
-                              <li>{parseDeviceData(childDevice)}</li>
+                              <li>{stringifyDeviceData(childDevice)}</li>
                             ))}
                           </ul>
                         </details>
@@ -100,4 +100,4 @@ class DevicesList extends ReflowReactComponent<DevicesListInterface> {
   }
 }
 
-export default DevicesList;
+export default UsbDevicesList;

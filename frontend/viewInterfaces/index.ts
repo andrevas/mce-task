@@ -1,7 +1,7 @@
-import DevicesList from "./DevicesList";
+import UsbDevicesList from "./UsbDevicesList";
 
 export const viewInterfaces = {
-  DevicesList: <DevicesList>{},
+  DevicesList: <UsbDevicesList>{},
 };
 
 export type ViewInterfacesType = typeof viewInterfaces;

@@ -1,5 +1,5 @@
-import DevicesList from "./DevicesList";
+import UsbDevicesList from "./UsbDevicesList";
 
 export const views: any = {
-  DevicesList,
+  DevicesList: UsbDevicesList,
 };

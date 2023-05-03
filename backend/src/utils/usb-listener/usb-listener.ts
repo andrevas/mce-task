@@ -27,7 +27,6 @@ const parseDeviceData = async (device: Device): Promise<UsbDeviceData> => {
     vendorId: device.deviceDescriptor.idVendor,
     productId: device.deviceDescriptor.idProduct,
     address: device.deviceAddress,
-    isHub: device.deviceDescriptor.bDeviceClass === HUB_DEVICE_CLASS,
     deviceDescription: await getDeviceStringDescription(device),
     parentAddress: device.parent ? device.parent.deviceAddress : undefined,
     deviceType: device.deviceDescriptor.bDeviceClass,

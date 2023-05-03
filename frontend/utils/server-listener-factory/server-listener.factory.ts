@@ -1,4 +1,4 @@
-import { HttpServerListener } from "./http-server-listener";
+import { HttpServerListener } from "./server-listeners/http-server-listener";
 import { IServerListener } from "./interfaces";
 
 export enum ServerType {

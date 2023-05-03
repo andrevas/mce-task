@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Device } from "../hierarchy-processor/types";
-import { IServerListener } from "./interfaces";
+import { UsbDevice } from "../../devices-parser/types";
+import { IServerListener } from "../interfaces";
 
 export class HttpServerListener implements IServerListener {
   port: number;
@@ -9,7 +9,7 @@ export class HttpServerListener implements IServerListener {
     this.port = port;
   }
 
-  async listen(onData: (devices: Device[]) => void): Promise<void> {
+  async listen(onData: (devices: UsbDevice[]) => void): Promise<void> {
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
     while (true) {

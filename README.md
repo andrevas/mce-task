@@ -2,11 +2,7 @@
 
 ### Running both client and server
 
-* run `npm install` from root directory
-
-* To `npm install` both projects at once - run `npm run pre_build`
-
-* To build both projects run `npm run build`
+* To install dependencies and build both backend and frontend run `npm run build`
 
 * To run both server and frontend app run `npm start`
 

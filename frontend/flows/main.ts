@@ -26,10 +26,11 @@ export default <Flow<ViewInterfacesType>>(async ({ view, views }) => {
     3000
   );
 
-  serverListener.listen((devices: UsbDevice[]) => {
+  serverListener.listen((devices: UsbDevice[], error?: Error) => {
     devicesListView.update({
       devices: parseDevices(devices, viewType),
       viewType,
+      error,
     });
   });
 

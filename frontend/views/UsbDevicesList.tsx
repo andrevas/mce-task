@@ -16,7 +16,7 @@ export enum UsbDevicesListMode {
 
 class UsbDevicesList extends ReflowReactComponent<DevicesListInterface> {
   render() {
-    const { title, devices, viewType, event } = this.props;
+    const { title, devices, viewType, event, error } = this.props;
 
     const stringifyHierarchyDeviceData = (
       deviceData: UsbDevicesHierarchyData
@@ -95,6 +95,7 @@ class UsbDevicesList extends ReflowReactComponent<DevicesListInterface> {
           )}
         </div>
         <button onClick={() => event("switchView", {})}>Switch View</button>
+        <div style={{ color: "red" }}>{error ? error.message : ""}</div>
       </>
     );
   }

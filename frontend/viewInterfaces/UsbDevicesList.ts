@@ -13,6 +13,7 @@ export interface Input {
   title: string;
   devices: UsbDevicesHierarchyData[] | UsbDevicesByTypeData[];
   viewType: UsbDevicesViewType;
+  error?: Error;
 }
 
 export default interface UsbDevicesList extends ViewInterface<Input, Events> {}
